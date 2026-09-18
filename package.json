@@ -51,7 +51,15 @@
     "impersonation",
     "auth"
   ],
-  "author": "",
+  "author": "devnymous",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devnymous/adonis-impersonate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/devnymous/adonis-impersonate/issues"
+  },
+  "homepage": "https://github.com/devnymous/adonis-impersonate#readme",
   "engines": {
     "node": ">=18.16.0"
   }
