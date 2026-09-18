@@ -1,7 +1,7 @@
 {
   "name": "adonis-impersonate",
   "description": "User impersonation for AdonisJS v6 applications, inspired by lab404/laravel-impersonate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "license": "MIT",
   "main": "build/index.js",
