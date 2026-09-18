@@ -10,8 +10,13 @@ import {
 import type { ImpersonatableUser } from '../src/types.js'
 import { createFakeCtx, createFakeEmitter } from './helpers/fakes.js'
 
-const admin: ImpersonatableUser = { id: 1, email: 'admin@example.com', isAdmin: true }
-const customer: ImpersonatableUser = { id: 2, email: 'customer@example.com', isAdmin: false }
+interface TestUser extends ImpersonatableUser {
+  email: string
+  isAdmin: boolean
+}
+
+const admin: TestUser = { id: 1, email: 'admin@example.com', isAdmin: true }
+const customer: TestUser = { id: 2, email: 'customer@example.com', isAdmin: false }
 
 function makeUsers() {
   return new Map<string | number, ImpersonatableUser>([
@@ -87,11 +92,11 @@ test.group('ImpersonateService | impersonate', () => {
 
   test('blocks impersonation when "canBeImpersonated" returns false', async ({ assert }) => {
     const { service } = makeService(admin, {
-      canBeImpersonated: (target) => !target.isAdmin,
+      canBeImpersonated: (target) => !(target as TestUser).isAdmin,
     })
 
     // admin impersonating another admin should be blocked
-    const anotherAdmin: ImpersonatableUser = { id: 3, isAdmin: true }
+    const anotherAdmin: TestUser = { id: 3, email: 'other-admin@example.com', isAdmin: true }
 
     await assert.rejects(
       () => service.impersonate(admin, anotherAdmin),

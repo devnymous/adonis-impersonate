@@ -34,20 +34,20 @@ export default defineConfig({
   },
 
   /**
-   * Return `false` to prevent "impersonator" from impersonating
+   * Return false to prevent "impersonator" from impersonating
    * "target". Self-impersonation is always blocked regardless of
    * this hook.
    */
-  canImpersonate: (impersonator, target) => {
+  canImpersonate: (_impersonator, _target) => {
     return true
   },
 
   /**
-   * Return `false` to prevent "target" from being impersonated by
+   * Return false to prevent "target" from being impersonated by
    * "impersonator". Use this to protect sensitive accounts, e.g.
    * preventing admins from impersonating other admins.
    */
-  canBeImpersonated: (target, impersonator) => {
+  canBeImpersonated: (_target, _impersonator) => {
     return true
   },
 })

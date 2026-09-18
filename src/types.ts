@@ -2,10 +2,14 @@
  * The minimal shape a user model must satisfy to be impersonated.
  * Any Lucid model (or plain object coming from another ORM) that
  * exposes an "id" works out of the box.
+ *
+ * Deliberately has no index signature: adding one would require
+ * every real model class (e.g. a Lucid model) to also declare a
+ * matching index signature to structurally satisfy this type, which
+ * defeats the point of keeping this loose.
  */
 export interface ImpersonatableUser {
   id: string | number
-  [key: string]: unknown
 }
 
 /**
