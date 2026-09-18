@@ -1,0 +1,58 @@
+{
+  "name": "adonis-impersonate",
+  "description": "User impersonation for AdonisJS v6 applications, inspired by lab404/laravel-impersonate",
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build",
+    "!build/bin",
+    "!build/tests"
+  ],
+  "exports": {
+    ".": "./build/index.js",
+    "./impersonate_provider": "./build/providers/impersonate_provider.js",
+    "./impersonate_middleware": "./build/src/impersonate_middleware.js",
+    "./controllers/impersonate_controller": "./build/controllers/impersonate_controller.js",
+    "./types": "./build/src/types.js"
+  },
+  "scripts": {
+    "clean": "rimraf build",
+    "copy:templates": "copyfiles \"stubs/**/*.stub\" build",
+    "build": "npm run clean && tsc && npm run copy:templates",
+    "typecheck": "tsc --noEmit",
+    "pretest": "npm run typecheck",
+    "test": "node --import=tsx bin/test.ts"
+  },
+  "peerDependencies": {
+    "@adonisjs/auth": "^9.2.0",
+    "@adonisjs/core": "^6.2.0",
+    "@adonisjs/session": "^7.4.0"
+  },
+  "devDependencies": {
+    "@adonisjs/assembler": "^7.8.2",
+    "@adonisjs/auth": "^9.5.1",
+    "@adonisjs/core": "^6.19.0",
+    "@adonisjs/session": "^7.7.1",
+    "@japa/assert": "^3.0.0",
+    "@japa/runner": "^3.1.4",
+    "@types/node": "^22.10.0",
+    "copyfiles": "^2.4.1",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "keywords": [
+    "adonisjs",
+    "adonis",
+    "impersonate",
+    "impersonation",
+    "auth"
+  ],
+  "author": "",
+  "engines": {
+    "node": ">=18.16.0"
+  }
+}

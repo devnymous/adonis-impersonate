@@ -1,0 +1,53 @@
+{{{
+  exports({ to: app.configPath('impersonate.ts') })
+}}}
+import { defineConfig } from 'adonis-impersonate'
+
+export default defineConfig({
+  /**
+   * The auth guard used to read the logged-in user and to switch
+   * the session over to the impersonated user.
+   */
+  guard: 'web',
+
+  /**
+   * The session key used to store the impersonator's original
+   * user id while impersonating someone else.
+   */
+  sessionKey: 'impersonator_id',
+
+  /**
+   * Where to redirect after successfully starting/leaving an
+   * impersonation.
+   */
+  redirectTo: '/',
+  redirectBack: '/',
+
+  /**
+   * Resolves a user by id. This is used both to find the
+   * impersonation target and to restore the original impersonator
+   * when leaving. Swap this for whatever ORM/model you use.
+   */
+  findUserById: async (id) => {
+    const User = (await import('#models/user')).default
+    return User.find(id)
+  },
+
+  /**
+   * Return `false` to prevent "impersonator" from impersonating
+   * "target". Self-impersonation is always blocked regardless of
+   * this hook.
+   */
+  canImpersonate: (impersonator, target) => {
+    return true
+  },
+
+  /**
+   * Return `false` to prevent "target" from being impersonated by
+   * "impersonator". Use this to protect sensitive accounts, e.g.
+   * preventing admins from impersonating other admins.
+   */
+  canBeImpersonated: (target, impersonator) => {
+    return true
+  },
+})
