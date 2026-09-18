@@ -1,5 +1,9 @@
 # adonis-impersonate
 
+[![CI](https://github.com/devnymous/adonis-impersonate/actions/workflows/ci.yml/badge.svg)](https://github.com/devnymous/adonis-impersonate/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/adonis-impersonate.svg)](https://www.npmjs.com/package/adonis-impersonate)
+[![license](https://img.shields.io/npm/l/adonis-impersonate.svg)](LICENSE)
+
 User impersonation for [AdonisJS v6](https://adonisjs.com), inspired by [lab404/laravel-impersonate](https://github.com/404labfr/laravel-impersonate). Lets an authenticated user (typically an admin) temporarily log in as another user, with a clean way back to their own session.
 
 ## Installation

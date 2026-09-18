@@ -25,7 +25,10 @@ function makeUsers() {
   ])
 }
 
-function makeService(loggedInUser: ImpersonatableUser, overrides: Partial<Parameters<typeof defineConfig>[0]> = {}) {
+function makeService(
+  loggedInUser: ImpersonatableUser,
+  overrides: Partial<Parameters<typeof defineConfig>[0]> = {}
+) {
   const users = makeUsers()
   const ctx = createFakeCtx(loggedInUser)
   const emitter = createFakeEmitter()
@@ -73,10 +76,7 @@ test.group('ImpersonateService | impersonate', () => {
   test('blocks self-impersonation', async ({ assert }) => {
     const { service } = makeService(admin)
 
-    await assert.rejects(
-      () => service.impersonate(admin, admin),
-      CannotImpersonateSelfException
-    )
+    await assert.rejects(() => service.impersonate(admin, admin), CannotImpersonateSelfException)
   })
 
   test('blocks impersonation when "canImpersonate" returns false', async ({ assert }) => {

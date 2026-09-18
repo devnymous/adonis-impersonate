@@ -23,7 +23,9 @@
     "copy:templates": "copyfiles \"stubs/**/*.stub\" build",
     "build": "npm run clean && tsc && npm run copy:templates",
     "typecheck": "tsc --noEmit",
-    "pretest": "npm run typecheck",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "pretest": "npm run typecheck && npm run lint",
     "test": "node --import=tsx bin/test.ts"
   },
   "peerDependencies": {
@@ -35,11 +37,15 @@
     "@adonisjs/assembler": "^7.8.2",
     "@adonisjs/auth": "^9.5.1",
     "@adonisjs/core": "^6.19.0",
+    "@adonisjs/eslint-config": "^3.1.0",
+    "@adonisjs/prettier-config": "^1.5.0",
     "@adonisjs/session": "^7.7.1",
     "@japa/assert": "^3.0.0",
     "@japa/runner": "^3.1.4",
     "@types/node": "^22.10.0",
     "copyfiles": "^2.4.1",
+    "eslint": "^9.39.5",
+    "prettier": "^3.9.8",
     "rimraf": "^6.0.1",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
@@ -62,5 +68,6 @@
   "homepage": "https://github.com/devnymous/adonis-impersonate#readme",
   "engines": {
     "node": ">=18.16.0"
-  }
+  },
+  "prettier": "@adonisjs/prettier-config"
 }
